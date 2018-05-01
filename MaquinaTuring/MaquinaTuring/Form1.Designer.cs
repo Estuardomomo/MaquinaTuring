@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.grpMaquinas = new System.Windows.Forms.GroupBox();
-            this.rdoPalíndromo = new System.Windows.Forms.RadioButton();
-            this.rdoPatrón = new System.Windows.Forms.RadioButton();
-            this.rdoSuma = new System.Windows.Forms.RadioButton();
-            this.rdoResta = new System.Windows.Forms.RadioButton();
             this.rdoMultiplicación = new System.Windows.Forms.RadioButton();
+            this.rdoResta = new System.Windows.Forms.RadioButton();
+            this.rdoSuma = new System.Windows.Forms.RadioButton();
+            this.rdoPatrón = new System.Windows.Forms.RadioButton();
+            this.rdoPalíndromo = new System.Windows.Forms.RadioButton();
             this.tbEntrada = new System.Windows.Forms.TextBox();
             this.btnEjecutar = new System.Windows.Forms.Button();
             this.dgvCinta = new System.Windows.Forms.DataGridView();
@@ -61,38 +61,16 @@
             this.grpMaquinas.TabStop = false;
             this.grpMaquinas.Text = "Maquinas de Turing";
             // 
-            // rdoPalíndromo
+            // rdoMultiplicación
             // 
-            this.rdoPalíndromo.AutoSize = true;
-            this.rdoPalíndromo.Location = new System.Drawing.Point(20, 19);
-            this.rdoPalíndromo.Name = "rdoPalíndromo";
-            this.rdoPalíndromo.Size = new System.Drawing.Size(79, 17);
-            this.rdoPalíndromo.TabIndex = 0;
-            this.rdoPalíndromo.TabStop = true;
-            this.rdoPalíndromo.Text = "Palíndromo";
-            this.rdoPalíndromo.UseVisualStyleBackColor = true;
-            // 
-            // rdoPatrón
-            // 
-            this.rdoPatrón.AutoSize = true;
-            this.rdoPatrón.Location = new System.Drawing.Point(20, 42);
-            this.rdoPatrón.Name = "rdoPatrón";
-            this.rdoPatrón.Size = new System.Drawing.Size(111, 17);
-            this.rdoPatrón.TabIndex = 1;
-            this.rdoPatrón.TabStop = true;
-            this.rdoPatrón.Text = "Copia de patrones";
-            this.rdoPatrón.UseVisualStyleBackColor = true;
-            // 
-            // rdoSuma
-            // 
-            this.rdoSuma.AutoSize = true;
-            this.rdoSuma.Location = new System.Drawing.Point(20, 65);
-            this.rdoSuma.Name = "rdoSuma";
-            this.rdoSuma.Size = new System.Drawing.Size(84, 17);
-            this.rdoSuma.TabIndex = 2;
-            this.rdoSuma.TabStop = true;
-            this.rdoSuma.Text = "Suma unaria";
-            this.rdoSuma.UseVisualStyleBackColor = true;
+            this.rdoMultiplicación.AutoSize = true;
+            this.rdoMultiplicación.Location = new System.Drawing.Point(20, 111);
+            this.rdoMultiplicación.Name = "rdoMultiplicación";
+            this.rdoMultiplicación.Size = new System.Drawing.Size(123, 17);
+            this.rdoMultiplicación.TabIndex = 4;
+            this.rdoMultiplicación.TabStop = true;
+            this.rdoMultiplicación.Text = "Multiplicación Unaria";
+            this.rdoMultiplicación.UseVisualStyleBackColor = true;
             // 
             // rdoResta
             // 
@@ -105,16 +83,38 @@
             this.rdoResta.Text = "Resta Unaria";
             this.rdoResta.UseVisualStyleBackColor = true;
             // 
-            // rdoMultiplicación
+            // rdoSuma
             // 
-            this.rdoMultiplicación.AutoSize = true;
-            this.rdoMultiplicación.Location = new System.Drawing.Point(20, 111);
-            this.rdoMultiplicación.Name = "rdoMultiplicación";
-            this.rdoMultiplicación.Size = new System.Drawing.Size(123, 17);
-            this.rdoMultiplicación.TabIndex = 4;
-            this.rdoMultiplicación.TabStop = true;
-            this.rdoMultiplicación.Text = "Multiplicación Unaria";
-            this.rdoMultiplicación.UseVisualStyleBackColor = true;
+            this.rdoSuma.AutoSize = true;
+            this.rdoSuma.Location = new System.Drawing.Point(20, 65);
+            this.rdoSuma.Name = "rdoSuma";
+            this.rdoSuma.Size = new System.Drawing.Size(84, 17);
+            this.rdoSuma.TabIndex = 2;
+            this.rdoSuma.TabStop = true;
+            this.rdoSuma.Text = "Suma unaria";
+            this.rdoSuma.UseVisualStyleBackColor = true;
+            // 
+            // rdoPatrón
+            // 
+            this.rdoPatrón.AutoSize = true;
+            this.rdoPatrón.Location = new System.Drawing.Point(20, 42);
+            this.rdoPatrón.Name = "rdoPatrón";
+            this.rdoPatrón.Size = new System.Drawing.Size(111, 17);
+            this.rdoPatrón.TabIndex = 1;
+            this.rdoPatrón.TabStop = true;
+            this.rdoPatrón.Text = "Copia de patrones";
+            this.rdoPatrón.UseVisualStyleBackColor = true;
+            // 
+            // rdoPalíndromo
+            // 
+            this.rdoPalíndromo.AutoSize = true;
+            this.rdoPalíndromo.Location = new System.Drawing.Point(20, 19);
+            this.rdoPalíndromo.Name = "rdoPalíndromo";
+            this.rdoPalíndromo.Size = new System.Drawing.Size(79, 17);
+            this.rdoPalíndromo.TabIndex = 0;
+            this.rdoPalíndromo.TabStop = true;
+            this.rdoPalíndromo.Text = "Palíndromo";
+            this.rdoPalíndromo.UseVisualStyleBackColor = true;
             // 
             // tbEntrada
             // 
@@ -131,13 +131,16 @@
             this.btnEjecutar.TabIndex = 2;
             this.btnEjecutar.Text = "Iniciar";
             this.btnEjecutar.UseVisualStyleBackColor = true;
+            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
             // 
             // dgvCinta
             // 
             this.dgvCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCinta.ColumnHeadersVisible = false;
             this.dgvCinta.Location = new System.Drawing.Point(235, 54);
             this.dgvCinta.Name = "dgvCinta";
-            this.dgvCinta.Size = new System.Drawing.Size(501, 56);
+            this.dgvCinta.RowHeadersVisible = false;
+            this.dgvCinta.Size = new System.Drawing.Size(501, 45);
             this.dgvCinta.TabIndex = 3;
             // 
             // picDiagrama
