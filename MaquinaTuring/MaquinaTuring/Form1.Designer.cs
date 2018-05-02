@@ -37,13 +37,13 @@
             this.tbEntrada = new System.Windows.Forms.TextBox();
             this.btnEjecutar = new System.Windows.Forms.Button();
             this.dgvCinta = new System.Windows.Forms.DataGridView();
-            this.picDiagrama = new System.Windows.Forms.PictureBox();
             this.dgvTabla = new System.Windows.Forms.DataGridView();
             this.lbTítulo = new System.Windows.Forms.Label();
             this.lbResultado = new System.Windows.Forms.Label();
+            this.btnAvanzar = new System.Windows.Forms.Button();
+            this.btnDiagrama = new System.Windows.Forms.Button();
             this.grpMaquinas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDiagrama)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,19 +143,12 @@
             this.dgvCinta.Size = new System.Drawing.Size(501, 45);
             this.dgvCinta.TabIndex = 3;
             // 
-            // picDiagrama
-            // 
-            this.picDiagrama.Location = new System.Drawing.Point(12, 231);
-            this.picDiagrama.Name = "picDiagrama";
-            this.picDiagrama.Size = new System.Drawing.Size(217, 208);
-            this.picDiagrama.TabIndex = 4;
-            this.picDiagrama.TabStop = false;
-            // 
             // dgvTabla
             // 
             this.dgvTabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTabla.Location = new System.Drawing.Point(235, 116);
             this.dgvTabla.Name = "dgvTabla";
+            this.dgvTabla.RowHeadersVisible = false;
             this.dgvTabla.Size = new System.Drawing.Size(501, 281);
             this.dgvTabla.TabIndex = 5;
             // 
@@ -179,15 +172,35 @@
             this.lbResultado.TabIndex = 7;
             this.lbResultado.Text = "ESTADO:";
             // 
+            // btnAvanzar
+            // 
+            this.btnAvanzar.Location = new System.Drawing.Point(12, 231);
+            this.btnAvanzar.Name = "btnAvanzar";
+            this.btnAvanzar.Size = new System.Drawing.Size(217, 23);
+            this.btnAvanzar.TabIndex = 8;
+            this.btnAvanzar.Text = "Avanzar";
+            this.btnAvanzar.UseVisualStyleBackColor = true;
+            this.btnAvanzar.Click += new System.EventHandler(this.btnAvanzar_Click);
+            // 
+            // btnDiagrama
+            // 
+            this.btnDiagrama.Location = new System.Drawing.Point(12, 260);
+            this.btnDiagrama.Name = "btnDiagrama";
+            this.btnDiagrama.Size = new System.Drawing.Size(217, 23);
+            this.btnDiagrama.TabIndex = 9;
+            this.btnDiagrama.Text = "Ver diagrama";
+            this.btnDiagrama.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 443);
+            this.Controls.Add(this.btnDiagrama);
+            this.Controls.Add(this.btnAvanzar);
             this.Controls.Add(this.lbResultado);
             this.Controls.Add(this.lbTítulo);
             this.Controls.Add(this.dgvTabla);
-            this.Controls.Add(this.picDiagrama);
             this.Controls.Add(this.dgvCinta);
             this.Controls.Add(this.btnEjecutar);
             this.Controls.Add(this.tbEntrada);
@@ -197,7 +210,6 @@
             this.grpMaquinas.ResumeLayout(false);
             this.grpMaquinas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDiagrama)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -215,10 +227,11 @@
         private System.Windows.Forms.TextBox tbEntrada;
         private System.Windows.Forms.Button btnEjecutar;
         private System.Windows.Forms.DataGridView dgvCinta;
-        private System.Windows.Forms.PictureBox picDiagrama;
         private System.Windows.Forms.DataGridView dgvTabla;
         private System.Windows.Forms.Label lbTítulo;
         private System.Windows.Forms.Label lbResultado;
+        private System.Windows.Forms.Button btnAvanzar;
+        private System.Windows.Forms.Button btnDiagrama;
     }
 }
 
