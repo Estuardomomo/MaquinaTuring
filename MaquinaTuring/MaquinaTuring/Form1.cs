@@ -8,6 +8,7 @@ namespace MaquinaTuring
     public partial class Form1 : Form
     {
         string entrada;
+        int longitud;
         int cabezal = 0;
         string[] argumentos;
         int contador = 0;
@@ -141,7 +142,11 @@ namespace MaquinaTuring
             MultiplicaciónUnaria.AgregarTransición("q9,*", "q9,*,I");
             MultiplicaciónUnaria.AgregarTransición("q9,X", "q2,1,D");
         }
-
+        /// <summary>
+        /// Construye la tabla de estados y escribe en la cinta según la maquina seleccionada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
             if (tbEntrada.Text != "")
@@ -161,8 +166,8 @@ namespace MaquinaTuring
                 else if (rdoPatrón.Checked && CopiaPatrón.VerificarEntrada(tbEntrada.Text)) //Copia de patrón seleccionado
                 {
                     entrada = tbEntrada.Text + "XX";
-                    int auxiliar = entrada.Length;
-                    for (int i = 0; i < auxiliar; i++)
+                    longitud = entrada.Length;
+                    for (int i = 0; i < longitud; i++)
                     {
                         entrada += "X";
                     }
@@ -196,8 +201,8 @@ namespace MaquinaTuring
                 else if (rdoMultiplicación.Checked && MultiplicaciónUnaria.VerificarEntrada(tbEntrada.Text)) //Multiplicación seleccionada
                 {
                     entrada = tbEntrada.Text + "=XX";
-                    int auxiliar = entrada.Length;
-                    for (int i = 0; i < auxiliar; i++)
+                    longitud = entrada.Length;
+                    for (int i = 0; i < longitud; i++)
                     {
                         entrada += "XXXXXXXXXXXX";
                     }
@@ -213,6 +218,8 @@ namespace MaquinaTuring
                 //Si se seleccionó un maquina de turing con exito, llenar la cinta.
                 if (entrada != "") {
                     cabezal = 0;
+                    contador = 0;
+                    lbResultado.Text = "Estado: q0";
                     dgvCinta.Rows.Clear();
                     dgvCinta.Columns.Clear();
                     dgvCinta.Refresh();
@@ -223,134 +230,73 @@ namespace MaquinaTuring
                     }
                     dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.LightBlue;
                     dgvCinta.ReadOnly = true;
-                    contador = 0;
-                    lbResultado.Text = "Estado: q0";
+                    entrada = tbEntrada.Text;
                 }
             }
             else { MessageBox.Show("Ocurrió un error al ingresar la cadena.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
+        /// <summary>
+        /// Avanzar un pasó en la maquina de turing. (El timer está desactivado).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAvanzar_Click(object sender, EventArgs e)
         {
-            if (rdoPalíndromo.Checked) {
-                if (Palíndromo.Avanzar(dgvCinta[cabezal, 0].Value.ToString(), ref argumentos, dgvTabla))//Aún existen más movimientos
-                {
-                    lbResultado.Text = "Estado: "+ Palíndromo.MirarEstado() + " Contador: " + contador.ToString();
-                    dgvCinta[cabezal, 0].Value = argumentos[1];
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.White;
-                    cabezal = cabezal + Palíndromo.Dirección(argumentos[2]);
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.LightBlue;
-                    contador++;
-                }
-                else {
-                    //revisar si es un estado terminal
-                    if (Palíndromo.EsAceptación()){
-                        lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
-                    }
-                    else {
-                        lbResultado.Text = "Resultado: La cadena no es aceptada   Contador: " + contador.ToString();
-                    }
-                }
-            }
-            else if (rdoPatrón.Checked)
-            {
-                if (CopiaPatrón.Avanzar(dgvCinta[cabezal, 0].Value.ToString(), ref argumentos, dgvTabla))//Aún existen más movimientos
-                {
-                    lbResultado.Text = "Estado: " + CopiaPatrón.MirarEstado() + " Contador: " + contador.ToString();
-                    dgvCinta[cabezal, 0].Value = argumentos[1];
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.White;
-                    cabezal = cabezal + CopiaPatrón.Dirección(argumentos[2]);
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.LightBlue;
-                    contador++;
-                }
-                else
-                {
-                    //revisar si es un estado terminal
-                    if (CopiaPatrón.EsAceptación())
-                    {
-                        lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString() ;
-                    }
-                    else
-                    {
-                        lbResultado.Text = "Resultado: La cadena no es aceptada   Contador: " + contador.ToString();
-                    }
-                }
-            }
-            else if (rdoSuma.Checked)
-            {
-                if (SumaUnaria.Avanzar(dgvCinta[cabezal, 0].Value.ToString(), ref argumentos, dgvTabla))//Aún existen más movimientos
-                {
-                    lbResultado.Text = "Estado: " + SumaUnaria.MirarEstado() + " Contador: " + contador.ToString();
-                    dgvCinta[cabezal, 0].Value = argumentos[1];
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.White;
-                    cabezal = cabezal + SumaUnaria.Dirección(argumentos[2]);
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.LightBlue;
-                    contador++;
-                }
-                else
-                {
-                    //revisar si es un estado terminal
-                    if (SumaUnaria.EsAceptación())
-                    {
-                        lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
-                    }
-                    else
-                    {
-                        lbResultado.Text = "Resultado: La cadena no es aceptada   Contador: " + contador.ToString();
-                    }
-                }
-            }
-            else if (rdoResta.Checked)
-            {
-                if (RestaUnaria.Avanzar(dgvCinta[cabezal, 0].Value.ToString(), ref argumentos, dgvTabla))//Aún existen más movimientos
-                {
-                    lbResultado.Text = "Estado: " + RestaUnaria.MirarEstado() + " Contador: " + contador.ToString();
-                    dgvCinta[cabezal, 0].Value = argumentos[1];
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.White;
-                    cabezal = cabezal + RestaUnaria.Dirección(argumentos[2]);
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.LightBlue;
-                    contador++;
-                }
-                else
-                {
-                    //revisar si es un estado terminal
-                    if (RestaUnaria.EsAceptación())
-                    {
-                        lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
-                    }
-                    else
-                    {
-                        lbResultado.Text = "Resultado: La cadena no es aceptada   Contador: " + contador.ToString();
-                    }
-                }
-            }
-            else if (rdoMultiplicación.Checked)
-            {
-                if (MultiplicaciónUnaria.Avanzar(dgvCinta[cabezal, 0].Value.ToString(), ref argumentos, dgvTabla))//Aún existen más movimientos
-                {
-                    lbResultado.Text = "Estado: " + MultiplicaciónUnaria.MirarEstado() + " Contador: " + contador.ToString();
-                    dgvCinta[cabezal, 0].Value = argumentos[1];
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.White;
-                    cabezal = cabezal + MultiplicaciónUnaria.Dirección(argumentos[2]);
-                    dgvCinta.Rows[0].Cells[cabezal].Style.BackColor = Color.LightBlue;
-                    contador++;
-                }
-                else
-                {
-                    //revisar si es un estado terminal
-                    if (MultiplicaciónUnaria.EsAceptación())
-                    {
-                        lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
-                    }
-                    else
-                    {
-                        lbResultado.Text = "Resultado: La cadena no es aceptada   Contador: " + contador.ToString();
-                    }
-                }
-            }
+            CódigoAvanzar();
         }
-
+        /// <summary>
+        /// Ejecutar este código cada vez que el timer termina un ciclo (100 milisegundos por defecto)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
+            CódigoAvanzar();
+        }
+        /// <summary>
+        /// Ejecuta toda la máquina de turing - Activa el timer, ocasionando que realice un paso cada ciclo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAnimación_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+        }
+        /// <summary>
+        /// Muestra el panel donde se puede ver el diagrama de la maquina seleccionada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDiagrama_Click(object sender, EventArgs e)
+        {
+            picDiagrama.ImageLocation = Application.StartupPath + "\\" + archivo;
+            picDiagrama.SizeMode = PictureBoxSizeMode.StretchImage;
+            pnlGráfico.Visible = true;
+        }
+        /// <summary>
+        /// Cierra el panel donde se puede ver el diagrama.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            pnlGráfico.Visible = false;
+        }
+        //Asegurarse que leí toda la cadena (Palíndromo y suma)
+        private bool ComprobarCadena(int longitud, string caracter) {
+            for (int i = 0; i < longitud; i++)
+            {
+                if (dgvCinta[i, 0].Value.ToString() != caracter) { return false; }
+            }
+            return true;
+        }
+        //Asegurarme que la resta tenía el formato correcto
+        private bool Comprobarresta(string cadena) {
+            if (cadena[0] != '1' || cadena[cadena.Length-1] != '1' || !cadena.Contains("-")) { return false; }
+            return true;
+        }
+        //Código del avance
+        private void CódigoAvanzar() {
             if (rdoPalíndromo.Checked)
             {
                 if (Palíndromo.Avanzar(dgvCinta[cabezal, 0].Value.ToString(), ref argumentos, dgvTabla))//Aún existen más movimientos
@@ -364,8 +310,8 @@ namespace MaquinaTuring
                 }
                 else
                 {
-                    //revisar si es un estado terminal
-                    if (Palíndromo.EsAceptación())
+                    //revisar si es un estado terminal y si se leyó toda la cadena
+                    if (Palíndromo.EsAceptación() && ComprobarCadena(entrada.Length, "X"))
                     {
                         lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
                         timer1.Enabled = false;
@@ -416,8 +362,8 @@ namespace MaquinaTuring
                 }
                 else
                 {
-                    //revisar si es un estado terminal
-                    if (SumaUnaria.EsAceptación())
+                    //revisar si es un estado terminal y si se leyó 
+                    if (SumaUnaria.EsAceptación() && ComprobarCadena(entrada.Length - 1, "1"))
                     {
                         lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
                         timer1.Enabled = false;
@@ -442,8 +388,8 @@ namespace MaquinaTuring
                 }
                 else
                 {
-                    //revisar si es un estado terminal
-                    if (RestaUnaria.EsAceptación())
+                    //revisar si es un estado terminal y si la cadena ingresada tenía el formato correcto
+                    if (RestaUnaria.EsAceptación() && Comprobarresta(entrada))
                     {
                         lbResultado.Text = "Resultado: La cadena es aceptada   Contador: " + contador.ToString();
                         timer1.Enabled = false;
@@ -481,24 +427,6 @@ namespace MaquinaTuring
                     }
                 }
             }
-            
-        }
-
-        private void btnAnimación_Click(object sender, EventArgs e)
-        {
-            timer1.Enabled = true;
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            pnlGráfico.Visible = false;
-        }
-
-        private void btnDiagrama_Click(object sender, EventArgs e)
-        {
-            picDiagrama.ImageLocation = Application.StartupPath + "\\" + archivo;
-            picDiagrama.SizeMode = PictureBoxSizeMode.StretchImage;
-            pnlGráfico.Visible = true;
         }
     }
 }

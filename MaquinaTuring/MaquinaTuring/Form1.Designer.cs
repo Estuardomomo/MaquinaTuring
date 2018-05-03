@@ -46,8 +46,8 @@
             this.btnAnimación = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlGráfico = new System.Windows.Forms.Panel();
-            this.picDiagrama = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.picDiagrama = new System.Windows.Forms.PictureBox();
             this.grpMaquinas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
@@ -223,17 +223,9 @@
             this.pnlGráfico.Controls.Add(this.picDiagrama);
             this.pnlGráfico.Location = new System.Drawing.Point(12, 12);
             this.pnlGráfico.Name = "pnlGráfico";
-            this.pnlGráfico.Size = new System.Drawing.Size(790, 402);
+            this.pnlGráfico.Size = new System.Drawing.Size(790, 409);
             this.pnlGráfico.TabIndex = 11;
             this.pnlGráfico.Visible = false;
-            // 
-            // picDiagrama
-            // 
-            this.picDiagrama.Location = new System.Drawing.Point(6, 13);
-            this.picDiagrama.Name = "picDiagrama";
-            this.picDiagrama.Size = new System.Drawing.Size(775, 346);
-            this.picDiagrama.TabIndex = 0;
-            this.picDiagrama.TabStop = false;
             // 
             // btnCerrar
             // 
@@ -244,6 +236,14 @@
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // picDiagrama
+            // 
+            this.picDiagrama.Location = new System.Drawing.Point(6, 13);
+            this.picDiagrama.Name = "picDiagrama";
+            this.picDiagrama.Size = new System.Drawing.Size(775, 389);
+            this.picDiagrama.TabIndex = 0;
+            this.picDiagrama.TabStop = false;
             // 
             // Form1
             // 
