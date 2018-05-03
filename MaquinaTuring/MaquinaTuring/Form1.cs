@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MaquinaTuring
@@ -10,11 +11,12 @@ namespace MaquinaTuring
         int cabezal = 0;
         string[] argumentos;
         int contador = 0;
-        MaquinaTuring Palíndromo = new MaquinaTuring(new string[] {"q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7"}, new string[] {"a","b","c"}, new string[] {"a","b","c","X"},"q0","X",new string[] {"q0","q4","q5","q6"},"Diagrama");
-        MaquinaTuring CopiaPatrón = new MaquinaTuring(new string[] { "q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8","q9","q10","q11","q12", "q13", "q14", "q15", "q16", "q17"}, new string[] { "a", "b", "c"}, new string[] { "a", "b", "c", "X" }, "q0", "X",new string[] {"q13"},"Diagrama");
-        MaquinaTuring SumaUnaria = new MaquinaTuring(new string[] {"q0", "q1", "q2", "q3"}, new string[] {"1","+"}, new string[] {"1","+","X","="}, "q0","X",new string[] {"q3"},"Diagrama");
-        MaquinaTuring RestaUnaria = new MaquinaTuring(new string[] {"q0","q1","q2","q3","q4"}, new string[] {"1","-"}, new string[] {"1","-","X"},"q0","X", new string[] {"q0", "q4"},"Diagrama");
-        MaquinaTuring MultiplicaciónUnaria = new MaquinaTuring(new string[] {"q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"}, new string[] {"1","*"}, new string[] {"1","*","=","X"},"q0","X",new string[] {"q10"},"Diagrama");
+        string archivo;
+        MaquinaTuring Palíndromo = new MaquinaTuring(new string[] {"q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7"}, new string[] {"a","b","c"}, new string[] {"a","b","c","X"},"q0","X",new string[] {"q0","q4","q5","q6"});
+        MaquinaTuring CopiaPatrón = new MaquinaTuring(new string[] { "q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8","q9","q10","q11","q12", "q13", "q14", "q15", "q16", "q17"}, new string[] { "a", "b", "c"}, new string[] { "a", "b", "c", "X" }, "q0", "X",new string[] {"q13"});
+        MaquinaTuring SumaUnaria = new MaquinaTuring(new string[] {"q0", "q1", "q2", "q3"}, new string[] {"1","+"}, new string[] {"1","+","X"}, "q0","X",new string[] {"q3"});
+        MaquinaTuring RestaUnaria = new MaquinaTuring(new string[] {"q0","q1","q2","q3","q4"}, new string[] {"1","-"}, new string[] {"1","-","X"},"q0","X", new string[] {"q0", "q4"});
+        MaquinaTuring MultiplicaciónUnaria = new MaquinaTuring(new string[] {"q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"}, new string[] {"1","*"}, new string[] {"1","*","=","X"},"q0","X",new string[] {"q10"});
         public Form1()
         {
             InitializeComponent();
@@ -145,16 +147,18 @@ namespace MaquinaTuring
             if (tbEntrada.Text != "")
             {
                 entrada = "";
-                if (rdoPalíndromo.Checked && Palíndromo.VerificarEntrada(tbEntrada.Text))
+                archivo = "";
+                if (rdoPalíndromo.Checked && Palíndromo.VerificarEntrada(tbEntrada.Text)) //Palindromo seleccionado
                 {
                     entrada = tbEntrada.Text + "XXX";
                     Palíndromo.LlenarTabla(dgvTabla);
                     Palíndromo.ReiniciarEstado();
+                    archivo = "Palindromo.png";
                     btnAvanzar.Enabled = true;
                     btnAnimación.Enabled = true;
                     btnDiagrama.Enabled = true;
                 }
-                else if (rdoPatrón.Checked && CopiaPatrón.VerificarEntrada(tbEntrada.Text))
+                else if (rdoPatrón.Checked && CopiaPatrón.VerificarEntrada(tbEntrada.Text)) //Copia de patrón seleccionado
                 {
                     entrada = tbEntrada.Text + "XX";
                     int auxiliar = entrada.Length;
@@ -164,29 +168,32 @@ namespace MaquinaTuring
                     }
                     CopiaPatrón.LlenarTabla(dgvTabla);
                     CopiaPatrón.ReiniciarEstado();
+                    archivo = "Patrón.png";
                     btnAvanzar.Enabled = true;
                     btnAnimación.Enabled = true;
                     btnDiagrama.Enabled = true;
                 }
-                else if (rdoSuma.Checked && SumaUnaria.VerificarEntrada(tbEntrada.Text))
+                else if (rdoSuma.Checked && SumaUnaria.VerificarEntrada(tbEntrada.Text)) //Suma seleccionada
                 {
                     entrada = tbEntrada.Text + "XXX";
                     SumaUnaria.LlenarTabla(dgvTabla);
                     SumaUnaria.ReiniciarEstado();
+                    archivo = "Suma.png";
                     btnAvanzar.Enabled = true;
                     btnAnimación.Enabled = true;
                     btnDiagrama.Enabled = true;
                 }
-                else if (rdoResta.Checked)
+                else if (rdoResta.Checked && RestaUnaria.VerificarEntrada(tbEntrada.Text)) //Resta seleccionada
                 {
                     entrada = tbEntrada.Text + "XXX";
                     RestaUnaria.LlenarTabla(dgvTabla);
                     RestaUnaria.ReiniciarEstado();
+                    archivo = "Resta.png";
                     btnAvanzar.Enabled = true;
                     btnAnimación.Enabled = true;
                     btnDiagrama.Enabled = true;
                 }
-                else if (rdoMultiplicación.Checked && MultiplicaciónUnaria.VerificarEntrada(tbEntrada.Text))
+                else if (rdoMultiplicación.Checked && MultiplicaciónUnaria.VerificarEntrada(tbEntrada.Text)) //Multiplicación seleccionada
                 {
                     entrada = tbEntrada.Text + "=XX";
                     int auxiliar = entrada.Length;
@@ -196,13 +203,16 @@ namespace MaquinaTuring
                     }
                     MultiplicaciónUnaria.LlenarTabla(dgvTabla);
                     MultiplicaciónUnaria.ReiniciarEstado();
+                    archivo = "Producto.png";
                     btnAvanzar.Enabled = true;
                     btnAnimación.Enabled = true;
                     btnDiagrama.Enabled = true;
                 }
+                //Si no se seleccionó nada, o la entrada contiene simbolos inválidos para el automata
+                else { MessageBox.Show("Ocurrió un error al ingresar la cadena.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                //Si se seleccionó un maquina de turing con exito, llenar la cinta.
                 if (entrada != "") {
                     cabezal = 0;
-                    //Cinta
                     dgvCinta.Rows.Clear();
                     dgvCinta.Columns.Clear();
                     dgvCinta.Refresh();
@@ -477,6 +487,18 @@ namespace MaquinaTuring
         private void btnAnimación_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            pnlGráfico.Visible = false;
+        }
+
+        private void btnDiagrama_Click(object sender, EventArgs e)
+        {
+            picDiagrama.ImageLocation = Application.StartupPath + "\\" + archivo;
+            picDiagrama.SizeMode = PictureBoxSizeMode.StretchImage;
+            pnlGráfico.Visible = true;
         }
     }
 }

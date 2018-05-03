@@ -16,10 +16,9 @@ namespace MaquinaTuring
         private string estadoInicial;
         private string simboloBlanco;
         private string[] estadoAceptación;
-        private string rutaDiagrama;
         private string estadoActual;
         //Constructor - Fija los valores de los atributos excepto el diccionario, este debe llenarse manualmente.
-        public MaquinaTuring(string[] estados, string[] simboloEntrada, string[] simboloCinta, string FijarEstadoInicial, string FijarBlanco, string[] estadosFinales, string Diagrama) {
+        public MaquinaTuring(string[] estados, string[] simboloEntrada, string[] simboloCinta, string FijarEstadoInicial, string FijarBlanco, string[] estadosFinales) {
             this.unidadControl = estados;
             this.alfabetoEntrada = simboloEntrada;
             this.alfabetoCinta = simboloCinta;
@@ -27,7 +26,6 @@ namespace MaquinaTuring
             this.estadoInicial = FijarEstadoInicial;
             this.simboloBlanco = FijarBlanco;
             this.estadoAceptación = estadosFinales;
-            this.rutaDiagrama = Diagrama;
             this.estadoActual = "q0";
         }
         //Operaciones del diccionario

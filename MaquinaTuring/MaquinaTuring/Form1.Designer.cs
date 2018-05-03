@@ -45,9 +45,14 @@
             this.btnDiagrama = new System.Windows.Forms.Button();
             this.btnAnimación = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pnlGráfico = new System.Windows.Forms.Panel();
+            this.picDiagrama = new System.Windows.Forms.PictureBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.grpMaquinas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
+            this.pnlGráfico.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDiagrama)).BeginInit();
             this.SuspendLayout();
             // 
             // grpMaquinas
@@ -195,6 +200,7 @@
             this.btnDiagrama.TabIndex = 9;
             this.btnDiagrama.Text = "Ver diagrama";
             this.btnDiagrama.UseVisualStyleBackColor = true;
+            this.btnDiagrama.Click += new System.EventHandler(this.btnDiagrama_Click);
             // 
             // btnAnimación
             // 
@@ -211,11 +217,40 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pnlGráfico
+            // 
+            this.pnlGráfico.Controls.Add(this.btnCerrar);
+            this.pnlGráfico.Controls.Add(this.picDiagrama);
+            this.pnlGráfico.Location = new System.Drawing.Point(12, 12);
+            this.pnlGráfico.Name = "pnlGráfico";
+            this.pnlGráfico.Size = new System.Drawing.Size(790, 402);
+            this.pnlGráfico.TabIndex = 11;
+            this.pnlGráfico.Visible = false;
+            // 
+            // picDiagrama
+            // 
+            this.picDiagrama.Location = new System.Drawing.Point(6, 13);
+            this.picDiagrama.Name = "picDiagrama";
+            this.picDiagrama.Size = new System.Drawing.Size(775, 346);
+            this.picDiagrama.TabIndex = 0;
+            this.picDiagrama.TabStop = false;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(339, 365);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(125, 23);
+            this.btnCerrar.TabIndex = 12;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 426);
+            this.ClientSize = new System.Drawing.Size(823, 426);
+            this.Controls.Add(this.pnlGráfico);
             this.Controls.Add(this.btnAnimación);
             this.Controls.Add(this.btnDiagrama);
             this.Controls.Add(this.btnAvanzar);
@@ -232,6 +267,8 @@
             this.grpMaquinas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
+            this.pnlGráfico.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDiagrama)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,6 +292,9 @@
         private System.Windows.Forms.Button btnDiagrama;
         private System.Windows.Forms.Button btnAnimación;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel pnlGráfico;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.PictureBox picDiagrama;
     }
 }
 
