@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpMaquinas = new System.Windows.Forms.GroupBox();
             this.rdoMultiplicación = new System.Windows.Forms.RadioButton();
             this.rdoResta = new System.Windows.Forms.RadioButton();
@@ -42,6 +43,8 @@
             this.lbResultado = new System.Windows.Forms.Label();
             this.btnAvanzar = new System.Windows.Forms.Button();
             this.btnDiagrama = new System.Windows.Forms.Button();
+            this.btnAnimación = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.grpMaquinas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
@@ -137,16 +140,16 @@
             // 
             this.dgvCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCinta.ColumnHeadersVisible = false;
-            this.dgvCinta.Location = new System.Drawing.Point(235, 54);
+            this.dgvCinta.Location = new System.Drawing.Point(12, 341);
             this.dgvCinta.Name = "dgvCinta";
             this.dgvCinta.RowHeadersVisible = false;
-            this.dgvCinta.Size = new System.Drawing.Size(501, 45);
+            this.dgvCinta.Size = new System.Drawing.Size(724, 45);
             this.dgvCinta.TabIndex = 3;
             // 
             // dgvTabla
             // 
             this.dgvTabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTabla.Location = new System.Drawing.Point(235, 116);
+            this.dgvTabla.Location = new System.Drawing.Point(235, 54);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.RowHeadersVisible = false;
             this.dgvTabla.Size = new System.Drawing.Size(501, 281);
@@ -166,7 +169,7 @@
             // 
             this.lbResultado.AutoSize = true;
             this.lbResultado.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbResultado.Location = new System.Drawing.Point(244, 412);
+            this.lbResultado.Location = new System.Drawing.Point(8, 399);
             this.lbResultado.Name = "lbResultado";
             this.lbResultado.Size = new System.Drawing.Size(97, 22);
             this.lbResultado.TabIndex = 7;
@@ -174,6 +177,7 @@
             // 
             // btnAvanzar
             // 
+            this.btnAvanzar.Enabled = false;
             this.btnAvanzar.Location = new System.Drawing.Point(12, 231);
             this.btnAvanzar.Name = "btnAvanzar";
             this.btnAvanzar.Size = new System.Drawing.Size(217, 23);
@@ -184,18 +188,35 @@
             // 
             // btnDiagrama
             // 
-            this.btnDiagrama.Location = new System.Drawing.Point(12, 260);
+            this.btnDiagrama.Enabled = false;
+            this.btnDiagrama.Location = new System.Drawing.Point(12, 289);
             this.btnDiagrama.Name = "btnDiagrama";
             this.btnDiagrama.Size = new System.Drawing.Size(217, 23);
             this.btnDiagrama.TabIndex = 9;
             this.btnDiagrama.Text = "Ver diagrama";
             this.btnDiagrama.UseVisualStyleBackColor = true;
             // 
+            // btnAnimación
+            // 
+            this.btnAnimación.Enabled = false;
+            this.btnAnimación.Location = new System.Drawing.Point(12, 260);
+            this.btnAnimación.Name = "btnAnimación";
+            this.btnAnimación.Size = new System.Drawing.Size(217, 23);
+            this.btnAnimación.TabIndex = 10;
+            this.btnAnimación.Text = "Avance Rápido";
+            this.btnAnimación.UseVisualStyleBackColor = true;
+            this.btnAnimación.Click += new System.EventHandler(this.btnAnimación_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 443);
+            this.ClientSize = new System.Drawing.Size(745, 426);
+            this.Controls.Add(this.btnAnimación);
             this.Controls.Add(this.btnDiagrama);
             this.Controls.Add(this.btnAvanzar);
             this.Controls.Add(this.lbResultado);
@@ -232,6 +253,8 @@
         private System.Windows.Forms.Label lbResultado;
         private System.Windows.Forms.Button btnAvanzar;
         private System.Windows.Forms.Button btnDiagrama;
+        private System.Windows.Forms.Button btnAnimación;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

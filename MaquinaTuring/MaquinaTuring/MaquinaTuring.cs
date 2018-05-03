@@ -133,5 +133,6 @@ namespace MaquinaTuring
                 catch { }
             }
         }
+        public void ReiniciarEstado() { this.estadoActual = "q0"; }
     }
 }
