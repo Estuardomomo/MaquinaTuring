@@ -215,6 +215,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pnlGráfico
@@ -241,7 +242,7 @@
             // 
             this.picDiagrama.Location = new System.Drawing.Point(6, 13);
             this.picDiagrama.Name = "picDiagrama";
-            this.picDiagrama.Size = new System.Drawing.Size(775, 389);
+            this.picDiagrama.Size = new System.Drawing.Size(771, 346);
             this.picDiagrama.TabIndex = 0;
             this.picDiagrama.TabStop = false;
             // 
